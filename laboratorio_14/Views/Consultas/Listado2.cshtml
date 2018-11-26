@@ -1,0 +1,37 @@
+﻿@model IEnumerable<laboratorio_14.Models.Notas>
+
+@{
+    ViewBag.Title = "Listado2";
+}
+
+<h2>Listado2</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ex)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ex)
+        </td>
+    </tr>
+}
+
+</table>

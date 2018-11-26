@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LAB14MODEL.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Carreras">
+          <Key>
+            <PropertyRef Name="codcar" />
+          </Key>
+          <Property Name="codcar" Type="int" Nullable="false" />
+          <Property Name="nomcar" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Cursos">
+          <Key>
+            <PropertyRef Name="codcur" />
+          </Key>
+          <Property Name="codcur" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="nomcur" Type="varchar" MaxLength="45" />
+          <Property Name="precio" Type="money" />
+          <Property Name="n_cuota" Type="int" />
+        </EntityType>
+        <EntityType Name="Notas">
+          <Key>
+            <PropertyRef Name="semestre" />
+            <PropertyRef Name="codalu" />
+            <PropertyRef Name="codcur" />
+          </Key>
+          <Property Name="semestre" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="codalu" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="codcur" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="pp" Type="int" />
+          <Property Name="pt" Type="int" />
+          <Property Name="ex" Type="int" />
+          <Property Name="estado" Type="int" />
+          <Property Name="fec_mat" Type="datetime" />
+          <Property Name="fec_nota" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="LAB14MODELStoreContainer">
+          <EntitySet Name="Carreras" EntityType="Self.Carreras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cursos" EntityType="Self.Cursos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notas" EntityType="Self.Notas" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LAB14MODEL" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Carreras">
+          <Key>
+            <PropertyRef Name="codcar" />
+          </Key>
+          <Property Name="codcar" Type="Int32" Nullable="false" />
+          <Property Name="nomcar" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Cursos">
+          <Key>
+            <PropertyRef Name="codcur" />
+          </Key>
+          <Property Name="codcur" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="nomcur" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="n_cuota" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Notas">
+          <Key>
+            <PropertyRef Name="semestre" />
+            <PropertyRef Name="codalu" />
+            <PropertyRef Name="codcur" />
+          </Key>
+          <Property Name="semestre" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="codalu" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="codcur" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="pp" Type="Int32" />
+          <Property Name="pt" Type="Int32" />
+          <Property Name="ex" Type="Int32" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="fec_mat" Type="DateTime" Precision="3" />
+          <Property Name="fec_nota" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="Lab14Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Carreras" EntityType="Self.Carreras" />
+          <EntitySet Name="Cursos" EntityType="Self.Cursos" />
+          <EntitySet Name="Notas" EntityType="Self.Notas" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LAB14MODELStoreContainer" CdmEntityContainer="Lab14Entities">
+          <EntitySetMapping Name="Carreras">
+            <EntityTypeMapping TypeName="LAB14MODEL.Carreras">
+              <MappingFragment StoreEntitySet="Carreras">
+                <ScalarProperty Name="codcar" ColumnName="codcar" />
+                <ScalarProperty Name="nomcar" ColumnName="nomcar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cursos">
+            <EntityTypeMapping TypeName="LAB14MODEL.Cursos">
+              <MappingFragment StoreEntitySet="Cursos">
+                <ScalarProperty Name="codcur" ColumnName="codcur" />
+                <ScalarProperty Name="nomcur" ColumnName="nomcur" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="n_cuota" ColumnName="n_cuota" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notas">
+            <EntityTypeMapping TypeName="LAB14MODEL.Notas">
+              <MappingFragment StoreEntitySet="Notas">
+                <ScalarProperty Name="semestre" ColumnName="semestre" />
+                <ScalarProperty Name="codalu" ColumnName="codalu" />
+                <ScalarProperty Name="codcur" ColumnName="codcur" />
+                <ScalarProperty Name="pp" ColumnName="pp" />
+                <ScalarProperty Name="pt" ColumnName="pt" />
+                <ScalarProperty Name="ex" ColumnName="ex" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fec_mat" ColumnName="fec_mat" />
+                <ScalarProperty Name="fec_nota" ColumnName="fec_nota" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

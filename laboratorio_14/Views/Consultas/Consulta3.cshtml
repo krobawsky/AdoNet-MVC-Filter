@@ -1,0 +1,70 @@
+﻿@model laboratorio_14.Models.AlumnoModel
+@{
+    ViewBag.Title = "Consulta3";
+}
+
+<h2>Consulta3</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Alumnos</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.codcar, "Carreras", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("list", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.codcar, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Fecha Inscripcion", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("FechaIns", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fecha_ins, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Mostrar" id="btnMostrar" class="btn btn-default" />
+            </div>
+        </div>
+
+        <div id="datos">
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@section Scripts
+{
+    <script>
+        $(function () {
+            $("#btnMostrar").click(function () {
+                $("#datos").empty();
+                var fecha_ins = $("#FechaIns").val();
+                var cod_car = $("#list").val();
+                var url = "@Url.Action("ListadoAlumnoCarrera", "Consultas")";
+                var data = { fecha_inicio: fecha_ins, cod_car: cod_car };
+
+                $.get(url, data).done(function (data) {
+                    $("#datos").append(data);
+                }).fail(errorAjax());
+
+            });
+            function errorAjax() {
+                console.log(err.responseText);
+            }
+        });
+    </script>
+
+}
